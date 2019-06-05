@@ -1,0 +1,11 @@
+{% extends 'boards/base.html' %}
+
+{% block content %}
+<h1>DETAIL</h1>
+<hr>
+<p>{{board.title}}</p>
+<p>{{board.content}}</p>
+<p>{{board.created_at}}</p>
+<p>{{board.updated_at}}</p>
+<a href="/boards">메인으로</a>
+{% endblock %}
