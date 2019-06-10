@@ -2,10 +2,13 @@
 
 {% block content %}
     <h1>BOARD</h1>
-    <a href="/boards/new/">글 작성</a>
+    <a href="{% url 'boards:create' %}">글 작성</a>
     <hr>
-    {% for ix in boards %}
-        <p><a href="/boards/{{ix.pk}}">{{ix.pk}}</a> 의 제목은 {{ix.title}} - {{ix.created_at|timesince }} 전</p>
+    {% for board in boards %}
+        <p>{{ board.pk }}</p>
+        <p>{{ board.title }}</p>
+        <p>{{ board.created_at|timesince }}</p>
+        <p><a href="{% url 'boards:detail' board.pk %}">글 보러가기</a>
         <hr>
     {% endfor %}
 {% endblock %}
