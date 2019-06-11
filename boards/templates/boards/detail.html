@@ -9,10 +9,33 @@
 <p>{{board.created_at}}</p>
 <p>{{board.updated_at}}</p>
 <hr>
+<!-- 댓글 출력 -->
+<p>{{ comments | length }} 개의 댓글</p>
+{% for comment in comments %}
+    <li>
+        {{ comment.content }}
+        <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST" style="display: inline">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+        </form>
+    </li>
+{% empty %}
+    <p><b>댓글이 없습니다.</b></p>
+{% endfor %}
+<hr>
+<!-- 댓글 입력 -->
+<form action="{% url 'boards:comments_create' board.pk %}" method="POST">
+    {% csrf_token %}
+    <label for="content">Comment</label>
+    <input type="text" name="content" id="content">
+    <input type="submit" value="submit">
+</form>
+<hr>
 <a href="{% url 'boards:update' board.pk %}">[수정]</a>
 <form action="{% url 'boards:delete' board.pk %}" method="POST" style="display: inline" onsubmit="return confirm('R U SURE??')">
     {% csrf_token %}
     <input type="submit" value="삭제">
 </form><br>
+<hr>
 <a href="{% url 'boards:index' %}">메인으로</a>
 {% endblock %}
