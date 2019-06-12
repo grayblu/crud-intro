@@ -1,7 +1,10 @@
 {% extends 'boards/base.html' %}
+{% load static %}
+
 
 {% block content %}
     <h1>BOARD</h1>
+    <img src="{% static 'boards/images/test-img.jpeg' %}" alt="test-img">
     <a href="{% url 'boards:create' %}">글 작성</a>
     <hr>
     {% for board in boards %}

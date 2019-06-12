@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'boards.apps.BoardsConfig',
+    'imagekit',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,3 +124,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 새로운 static 경로 추가, Django에서 해당 경로 자동 인식
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'crud', 'assets', 'images'),
+]
+
+# 실제 파일이 저장되는 경로와 이미지 URL 경로 설정
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

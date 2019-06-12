@@ -1,9 +1,15 @@
 {% extends 'boards/base.html' %}
+{% load static %}
 
 {% block content %}
 <h1>DETAIL</h1>
 <h2>{{ board.pk }} 번째 글</h2>
 <hr>
+{% if board.image %}
+    <img src="{{ board.image.url }}" alt="{{ board.image }}">
+{% else %}
+    <img src="{% static 'boards/images/noimg.png' %}" alt="no-img">
+{% endif %}
 <p>{{board.title}}</p>
 <p>{{board.content}}</p>
 <p>{{board.created_at}}</p>

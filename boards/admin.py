@@ -4,7 +4,7 @@ from .models import Board, Comment
 
 # Register your models here.
 class BoardAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'content', 'created_at', 'updated_at']
+    list_display = ['id', 'title', 'image', 'content', 'created_at', 'updated_at']
 
 
 admin.site.register(Board, BoardAdmin)

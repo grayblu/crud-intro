@@ -1,13 +1,20 @@
 {% extends 'boards/base.html' %}
+{% load static %}
 
 {% block content %}
 <h1>EDIT</h1>
-<form action="" method="POST">
+{% if board.image %}
+    <img src="{{ board.image.url }}" alt="{{ board.image }}">
+{% else %}
+    <img src="{% static 'boards/images/noimg.png' %}" alt="no-img">
+{% endif %}
+<form action="{% url 'boards:update' board.pk %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <lable for="title">TITLE</lable>
     <input type="text" name="title" id="title" value="{{ board.title }}"><br>
     <label for="content">CONTENT</label>
-    <textarea name="content" id="content" >{{ board.content }}</textarea>
+    <textarea name="content" id="content" >{{ board.content }}</textarea><br>
+    <input type="file" name="image" accept="image/*"><br>
     <input type="submit" value="수정">
 </form>
 <a href="{% url 'boards:detail' board.pk %}">back</a>

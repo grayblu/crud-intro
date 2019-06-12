@@ -21,8 +21,9 @@ def create(request):
         # new 에서 넘어오는 제목과 내용을 저장
         title = request.POST.get('title')
         content = request.POST.get('content')
+        image = request.FILES.get('image')
         # orm title과 content에 위에서 넘어온 값을 할당
-        board = Board(title=title, content=content)
+        board = Board(title=title, content=content, image=image)
         # db에 저장
         board.save()
 
@@ -62,6 +63,7 @@ def update(request, board_pk):
     if request.method == 'POST':
         board.title = request.POST.get('title')
         board.content = request.POST.get('content')
+        board.image = request.FILES.get('image')
         board.save()
         return redirect('boards:detail', board.pk)
     else:
